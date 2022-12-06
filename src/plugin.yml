@@ -1,0 +1,12 @@
+ name: NeoSAPIAddons
+ api-version: 1.16
+ version: 1.0
+ description: Various commands and skills that SkillAPI is too bad to do by itself
+ author: Neoblade298
+ depend: [SkillAPI, NeoCore]
+ softdepend: [MythicMobs]
+ main: me.neoblade298.neosapiaddons.SAPIAddons
+ commands: 
+  nsapi:
+    description: Base command for usage
+    usage: /nsapi [command] [player] [arg]

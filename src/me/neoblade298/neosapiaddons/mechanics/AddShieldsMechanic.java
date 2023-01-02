@@ -1,6 +1,8 @@
 package me.neoblade298.neosapiaddons.mechanics;
 
 import java.util.List;
+
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -9,6 +11,7 @@ import com.sucy.skill.dynamic.ComponentType;
 import com.sucy.skill.dynamic.custom.CustomEffectComponent;
 import com.sucy.skill.dynamic.custom.EditorOption;
 
+import me.neoblade298.neosapiaddons.AddShieldsEvent;
 import me.neoblade298.neosapiaddons.Shield;
 import me.neoblade298.neosapiaddons.ShieldManager;
 
@@ -67,7 +70,10 @@ public class AddShieldsMechanic extends CustomEffectComponent {
 		
 		for (LivingEntity target : targets) {
 			if (target instanceof Player) {
-				ShieldManager.addShields((Player) target, new Shield((Player) target, amt, isPercent, decayDelay, decayAmount, decayPeriod, decayRepetitions));
+				AddShieldsEvent e = new AddShieldsEvent((Player) caster, (Player) target, amt, decayDelay, decayAmount, decayPeriod, decayRepetitions);
+				Bukkit.getPluginManager().callEvent(e);
+				ShieldManager.addShields((Player) target, new Shield((Player) target, e.getAmount(), isPercent, e.getDecayDelay(),
+						e.getDecayAmount(), e.getDecayPeriod(), e.getDecayRepetitions()));
 			}
 		}
 		return true;

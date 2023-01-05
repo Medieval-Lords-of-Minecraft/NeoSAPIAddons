@@ -45,7 +45,7 @@ public class StringCondition extends CustomEffectComponent {
 
 	@Override
 	public String getKey() {
-		return "String";
+		return "string";
 	}
 
 	@Override

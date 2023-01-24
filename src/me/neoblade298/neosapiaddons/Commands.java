@@ -5,7 +5,8 @@ import com.sucy.skill.api.player.PlayerSkill;
 import com.sucy.skill.api.skills.Skill;
 import com.sucy.skill.api.util.FlagManager;
 
-import me.neoblade298.neocore.util.Util;
+import me.neoblade298.neocore.bukkit.util.BukkitUtil;
+import me.neoblade298.neocore.shared.util.SharedUtil;
 import me.neoblade298.neosapiaddons.methods.ProfessClass;
 import me.neoblade298.neosapiaddons.methods.ResetClass;
 
@@ -71,12 +72,12 @@ public class Commands implements CommandExecutor {
 			}
 			else if (args[0].equalsIgnoreCase("checkskill")) {
 				Player p = Bukkit.getPlayer(args[1]);
-				String skill = Util.connectArgs(args, 2);
+				String skill = SharedUtil.connectArgs(args, 2);
 				PlayerSkill ps = SkillAPI.getPlayerData(p).getSkill(skill);
 				if (ps == null) {
-					Util.msg(sender, "&cThis skill doesn't exist for this player!");
+					BukkitUtil.msg(sender, "&cThis skill doesn't exist for this player!");
 				}
-				Util.msg(sender, "&7Player &c" + p.getName() + " &7skill level of &6" + ps.getData().getName() + " &7is &e" + ps.getLevel());
+				BukkitUtil.msg(sender, "&7Player &c" + p.getName() + " &7skill level of &6" + ps.getData().getName() + " &7is &e" + ps.getLevel());
 				return true;
 			}
 			else if (args[0].equalsIgnoreCase("flag")) {
